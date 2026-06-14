@@ -23,8 +23,11 @@ if (!GITHUB_TOKEN)  console.error('[WARN] GITHUB_TOKEN is undefined — check yo
 else                console.log ('[OK]  GITHUB_TOKEN loaded');
 
 // ─── Paths ────────────────────────────────────────────────────────────────────
-// Templates live at: C:\Users\Owner\.gemini\antigravity\workspace\Templetes
-const TEMPLATES_ROOT = path.resolve(__dirname, '..', 'Templetes');
+// Check if Templetes exists inside the same directory (like on Render), fallback to parent directory
+let TEMPLATES_ROOT = path.resolve(__dirname, 'Templetes');
+if (!fs.existsSync(TEMPLATES_ROOT)) {
+  TEMPLATES_ROOT = path.resolve(__dirname, '..', 'Templetes');
+}
 const TEMP_ROOT      = path.resolve(__dirname, 'temp');
 console.log('[PATH] TEMPLATES_ROOT →', TEMPLATES_ROOT);
 if (!fs.existsSync(TEMP_ROOT)) fs.mkdirSync(TEMP_ROOT, { recursive: true });
