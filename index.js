@@ -35,7 +35,11 @@ const archiver  = require('archiver');
 
 // ─── Express setup ────────────────────────────────────────────────────────────
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json({ limit: '5mb' }));
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
