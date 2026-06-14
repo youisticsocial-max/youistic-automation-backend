@@ -43,7 +43,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
-app.options('*', (req, res) => {
+app.options('/build', (req, res) => {
   res.status(200).end();
 });
 app.use(express.json({ limit: '5mb' }));
@@ -185,6 +185,9 @@ app.post('/build', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Fallback health check route
+app.get('/', (req, res) => res.send('Backend is running fine!'));
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
