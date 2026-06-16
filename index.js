@@ -71,7 +71,7 @@ function replaceRecursively(dir, fields) {
     const p = path.join(dir, item.name);
     if (item.isDirectory()) {
       replaceRecursively(p, fields);
-    } else if (item.isFile() && (p.endsWith('.html') || p.endsWith('.css'))) {
+    } else if (item.isFile() && (p.endsWith('.html') || p.endsWith('.css') || p.endsWith('.js') || p.endsWith('.jsx') || p.endsWith('.ts') || p.endsWith('.tsx'))) {
       replacePlaceholders(p, fields);
     }
   }
