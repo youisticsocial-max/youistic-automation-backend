@@ -150,6 +150,12 @@ app.post('/build', async (req, res) => {
     return res.status(400).json({ error: 'Missing required fields: category, clientName, variant, serverNumber, fields' });
   }
 
+  // Derive EMAIL from CLINIC_NAME if not present to avoid spaces
+  if (fields && fields.CLINIC_NAME && !fields.EMAIL) {
+    const cleanName = fields.CLINIC_NAME.toLowerCase().replace(/[^a-z0-9]/g, '');
+    fields.EMAIL = `info@${cleanName}.com`;
+  }
+
   let srcTemplate = path.join(TEMPLATES_ROOT, category, variant);
   console.log('[BUILD] Looking for template variant path:', srcTemplate);
   if (!fs.existsSync(srcTemplate)) {

@@ -15,17 +15,17 @@
     --color-wood-light: #b07d4f;
     --color-wood-accent: #c49a6c;
     
-    --color-gold: #d4af37;
-    --color-gold-hover: #e5c158;
-    --color-gold-light: #f3e5ab;
-    --color-gold-dark: #aa8722;
+    --color-gold: {{PRIMARY_COLOR}};
+    --color-gold-hover: {{PRIMARY_COLOR}}dd;
+    --color-gold-light: {{PRIMARY_COLOR}}22;
+    --color-gold-dark: {{PRIMARY_COLOR}};
     
     --color-text-main: #ffffff;
     --color-text-muted: #c5c5c7;
     --color-text-dark: #121214;
     
-    --color-border: rgba(212, 175, 55, 0.15);
-    --color-border-focus: rgba(212, 175, 55, 0.5);
+    --color-border: {{PRIMARY_COLOR}}26;
+    --color-border-focus: {{PRIMARY_COLOR}}80;
     
     /* Typography */
     --font-heading: 'Playfair Display', Georgia, serif;

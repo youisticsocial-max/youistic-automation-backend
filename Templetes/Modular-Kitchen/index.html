@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
             </div>
             <div class="top-bar-item">
                 <i class="fa-solid fa-phone accent-color"></i>
-                <a href="tel:{{PHONE}}">+91 89898 55123</a>
+                <a href="tel:{{PHONE}}">{{PHONE}}</a>
             </div>
             <div class="top-bar-item">
                 <i class="fa-solid fa-clock accent-color"></i>
@@ -40,9 +40,12 @@
     <!-- Header Navigation -->
     <header class="main-header">
         <div class="container nav-container">
-            <a href="#" class="brand-logo">
-                <div class="logo-text">Parasvnath <span class="accent-color">Interio</span></div>
-                <div class="logo-sub">MODULAR KITCHEN & INTERIOR</div>
+            <a href="#" class="brand-logo" style="display: flex; align-items: center; gap: 12px;">
+                <img src="{{LOGO_URL}}" alt="{{CLINIC_NAME}} Logo" class="brand-logo-image" style="max-height: 48px; width: auto; object-fit: contain;">
+                <div class="logo-text-wrapper" style="display: flex; flex-direction: column;">
+                    <div class="logo-text">{{CLINIC_NAME}}</div>
+                    <div class="logo-sub">MODULAR KITCHEN & INTERIOR</div>
+                </div>
             </a>
             
             <nav class="nav-links" id="navLinks">
@@ -123,7 +126,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="L-Shape Modular Kitchen">
+                                    <img src="assets/l_shape_kitchen.png" alt="L-Shape Modular Kitchen">
                                     <span class="product-tag">Popular</span>
                                 </div>
                                 <div class="product-info">
@@ -142,7 +145,7 @@
                             
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="U-Shape Modular Kitchen">
+                                    <img src="assets/u_shape_kitchen.png" alt="U-Shape Modular Kitchen">
                                 </div>
                                 <div class="product-info">
                                     <h3>U-Shape Kitchen</h3>
@@ -160,7 +163,7 @@
                             
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="Island Modular Kitchen">
+                                    <img src="assets/island_kitchen.png" alt="Island Modular Kitchen">
                                     <span class="product-tag">Luxury</span>
                                 </div>
                                 <div class="product-info">
@@ -179,7 +182,7 @@
 
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="Straight Modular Kitchen">
+                                    <img src="assets/l_shape_kitchen.png" alt="Straight Modular Kitchen">
                                 </div>
                                 <div class="product-info">
                                     <h3>Straight & Parallel Kitchen</h3>
@@ -202,7 +205,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="Luxury Sliding Wardrobe">
+                                    <img src="assets/wardrobe.png" alt="Luxury Sliding Wardrobe">
                                     <span class="product-tag">Trending</span>
                                 </div>
                                 <div class="product-info">
@@ -221,7 +224,7 @@
 
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="Walk-in Closet">
+                                    <img src="assets/wardrobe.png" alt="Walk-in Closet">
                                     <span class="product-tag">Elite</span>
                                 </div>
                                 <div class="product-info">
@@ -245,7 +248,7 @@
                         <div class="products-grid">
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="Modern TV Unit Panel">
+                                    <img src="assets/tv_unit.png" alt="Modern TV Unit Panel">
                                 </div>
                                 <div class="product-info">
                                     <h3>Luxury TV Unit</h3>
@@ -263,7 +266,7 @@
 
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="{{LOGO_URL}}" alt="Elegant Crockery Unit">
+                                    <img src="assets/tv_unit.png" alt="Elegant Crockery Unit">
                                 </div>
                                 <div class="product-info">
                                     <h3>Crockery & Pooja Units</h3>
@@ -496,7 +499,7 @@
                 <!-- Gallery Grid -->
                 <div class="gallery-grid">
                     <div class="gallery-item" data-category="kitchen">
-                        <img src="{{LOGO_URL}}" alt="L-Shape Modular Kitchen Jodhpur">
+                        <img src="assets/l_shape_kitchen.png" alt="L-Shape Modular Kitchen Jodhpur">
                         <div class="gallery-overlay">
                             <div class="overlay-info">
                                 <span>Modular Kitchen</span>
@@ -507,7 +510,7 @@
                     </div>
                     
                     <div class="gallery-item" data-category="wardrobe">
-                        <img src="{{LOGO_URL}}" alt="Walk-in Closet Jodhpur">
+                        <img src="assets/wardrobe.png" alt="Walk-in Closet Jodhpur">
                         <div class="gallery-overlay">
                             <div class="overlay-info">
                                 <span>Storage</span>
@@ -518,7 +521,7 @@
                     </div>
                     
                     <div class="gallery-item" data-category="kitchen">
-                        <img src="{{LOGO_URL}}" alt="U-Shape Luxury Kitchen Jodhpur">
+                        <img src="assets/u_shape_kitchen.png" alt="U-Shape Luxury Kitchen Jodhpur">
                         <div class="gallery-overlay">
                             <div class="overlay-info">
                                 <span>Modular Kitchen</span>
@@ -529,7 +532,7 @@
                     </div>
 
                     <div class="gallery-item" data-category="living">
-                        <img src="{{LOGO_URL}}" alt="Fluted TV Unit Panel Jodhpur">
+                        <img src="assets/tv_unit.png" alt="Fluted TV Unit Panel Jodhpur">
                         <div class="gallery-overlay">
                             <div class="overlay-info">
                                 <span>Living Room</span>
@@ -540,7 +543,7 @@
                     </div>
 
                     <div class="gallery-item" data-category="kitchen">
-                        <img src="{{LOGO_URL}}" alt="Marble Top Island Kitchen Jodhpur">
+                        <img src="assets/island_kitchen.png" alt="Marble Top Island Kitchen Jodhpur">
                         <div class="gallery-overlay">
                             <div class="overlay-info">
                                 <span>Modular Kitchen</span>
@@ -551,7 +554,7 @@
                     </div>
 
                     <div class="gallery-item" data-category="living">
-                        <img src="{{LOGO_URL}}" alt="Parallel Kitchen Jodhpur">
+                        <img src="assets/hero_kitchen.png" alt="Parallel Kitchen Jodhpur">
                         <div class="gallery-overlay">
                             <div class="overlay-info">
                                 <span>Modular Kitchen</span>
@@ -782,7 +785,7 @@
                         </div>
                         <div class="phone-details">
                             <span>Prefer to Call?</span>
-                            <a href="tel:{{PHONE}}">+91 89898 55123</a>
+                            <a href="tel:{{PHONE}}">{{PHONE}}</a>
                         </div>
                     </div>
                 </div>
@@ -854,7 +857,7 @@
                                 <i class="fa-solid fa-map-location-dot accent-color"></i>
                                 <div>
                                     <h5>Showroom Address</h5>
-                                    <p>Plot No. 155 Vasundra Nagar, Near Madtiya Garden, Near Pal Balaji Temple, Pal Road, Pal Balaji, Jodhpur - 342008</p>
+                                    <p>{{ADDRESS}}</p>
                                 </div>
                             </div>
                             
@@ -870,12 +873,12 @@
                                 <i class="fa-solid fa-envelope accent-color"></i>
                                 <div>
                                     <h5>Email Address</h5>
-                                    <p>info@parasvnathinterio.com</p>
+                                    <p>{{EMAIL}}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="https://maps.google.com/?q=Plot+No.+155+Vasundra+Nagar,+Near+Pal+Balaji+Temple,+Jodhpur" target="_blank" class="btn btn-outline btn-full">
+                        <a href="https://maps.google.com/?q={{ADDRESS}}" target="_blank" class="btn btn-outline btn-full">
                             <i class="fa-solid fa-diamond-turn-right"></i> Get Showroom Directions
                         </a>
                     </div>
@@ -901,7 +904,7 @@
                                 <i class="fa-solid fa-kitchen-set"></i>
                                 <div class="marker-tooltip">
                                     <strong>{{CLINIC_NAME}}</strong>
-                                    <span>Plot 155 Vasundra Nagar</span>
+                                    <span>{{ADDRESS}}</span>
                                 </div>
                             </div>
                         </div>
@@ -916,9 +919,12 @@
     <footer class="main-footer">
         <div class="container footer-top">
             <div class="footer-brand">
-                <a href="#" class="brand-logo">
-                    <div class="logo-text">Parasvnath <span class="accent-color">Interio</span></div>
-                    <div class="logo-sub">MODULAR KITCHEN & INTERIOR</div>
+                <a href="#" class="brand-logo" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <img src="{{LOGO_URL}}" alt="{{CLINIC_NAME}} Logo" class="brand-logo-image" style="max-height: 40px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
+                    <div class="logo-text-wrapper" style="display: flex; flex-direction: column;">
+                        <div class="logo-text">{{CLINIC_NAME}}</div>
+                        <div class="logo-sub">MODULAR KITCHEN & INTERIOR</div>
+                    </div>
                 </a>
                 <p class="footer-desc">Jodhpur's premier interior brand crafting beautiful modular kitchens, sliding wardrobes, and contemporary living spaces. Designed to fit your life, built to last a decade.</p>
                 <div class="footer-socials">
