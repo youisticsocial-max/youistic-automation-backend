@@ -90,7 +90,7 @@ function zipFolder(sourceDir, outPath) {
 }
 
 // ─── Netlify deploy ───────────────────────────────────────────────────────────
-async function deployToNetlify(zipPath, siteName) {
+async function deployToNetlify(zipPath, siteName, netlifyToken) {
   // Step 1 – create site
   console.log('[NETLIFY] Creating site:', siteName);
   let createBody, siteId;
@@ -98,7 +98,7 @@ async function deployToNetlify(zipPath, siteName) {
     const createResp = await fetch('https://api.netlify.com/api/v1/sites', {
       method: 'POST',
       headers: {
-        Authorization:  `Bearer ${NETLIFY_TOKEN}`,
+        Authorization:  `Bearer ${netlifyToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: siteName }),
@@ -121,7 +121,7 @@ async function deployToNetlify(zipPath, siteName) {
     const deployResp = await fetch(`https://api.netlify.com/api/v1/sites/${siteId}/deploys`, {
       method: 'POST',
       headers: {
-        Authorization:  `Bearer ${NETLIFY_TOKEN}`,
+        Authorization:  `Bearer ${netlifyToken}`,
         'Content-Type': 'application/zip',
       },
       body: zipBuffer,
@@ -143,18 +143,18 @@ async function deployToNetlify(zipPath, siteName) {
 
 // ─── POST /build ──────────────────────────────────────────────────────────────
 app.post('/build', async (req, res) => {
-  const { category, clientName, fields } = req.body || {};
-  console.log('\n[BUILD] Request received:', { category, clientName, fields });
+  const { category, clientName, variant, serverNumber, fields } = req.body || {};
+  console.log('\n[BUILD] Request received:', { category, clientName, variant, serverNumber, fields });
 
-  if (!category || !clientName || !fields) {
-    return res.status(400).json({ error: 'Missing required fields: category, clientName, fields' });
+  if (!category || !clientName || !variant || !serverNumber || !fields) {
+    return res.status(400).json({ error: 'Missing required fields: category, clientName, variant, serverNumber, fields' });
   }
 
-  const srcTemplate = path.join(TEMPLATES_ROOT, category);
+  const srcTemplate = path.join(TEMPLATES_ROOT, category, variant);
   console.log('[BUILD] Looking for template at:', srcTemplate, '→ exists?', fs.existsSync(srcTemplate));
   if (!fs.existsSync(srcTemplate)) {
     const available = fs.readdirSync(TEMPLATES_ROOT).join(', ');
-    return res.status(404).json({ error: `Template '${category}' not found. Available: ${available}` });
+    return res.status(404).json({ error: `Template '${category}' with variant '${variant}' not found. Available: ${available}` });
   }
 
   const workId  = uuidv4();
@@ -167,8 +167,14 @@ app.post('/build', async (req, res) => {
     await zipFolder(workDir, zipPath);
     console.log('[BUILD] Zip created at:', zipPath, '— size:', fs.statSync(zipPath).size, 'bytes');
 
+    const tokenKey = `NETLIFY_TOKEN_${serverNumber}`;
+    const netlifyToken = process.env[tokenKey] || process.env.NETLIFY_TOKEN;
+    if (!netlifyToken) {
+      throw new Error(`Netlify token for Server ${serverNumber} is not configured (checked ${tokenKey} and NETLIFY_TOKEN)`);
+    }
+
     const siteSlug   = `${clientName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${category.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${workId.slice(0,6)}`;
-    const previewUrl = await deployToNetlify(zipPath, siteSlug);
+    const previewUrl = await deployToNetlify(zipPath, siteSlug, netlifyToken);
 
     // Cleanup temp files
     fs.rmSync(workDir, { recursive: true, force: true });
