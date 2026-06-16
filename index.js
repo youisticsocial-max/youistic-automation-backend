@@ -150,11 +150,17 @@ app.post('/build', async (req, res) => {
     return res.status(400).json({ error: 'Missing required fields: category, clientName, variant, serverNumber, fields' });
   }
 
-  const srcTemplate = path.join(TEMPLATES_ROOT, category, variant);
-  console.log('[BUILD] Looking for template at:', srcTemplate, '→ exists?', fs.existsSync(srcTemplate));
+  let srcTemplate = path.join(TEMPLATES_ROOT, category, variant);
+  console.log('[BUILD] Looking for template variant path:', srcTemplate);
+  if (!fs.existsSync(srcTemplate)) {
+    console.log(`[BUILD] Variant folder '${variant}' not found. Falling back to base category path.`);
+    srcTemplate = path.join(TEMPLATES_ROOT, category);
+  }
+
+  console.log('[BUILD] Using source template path:', srcTemplate, '→ exists?', fs.existsSync(srcTemplate));
   if (!fs.existsSync(srcTemplate)) {
     const available = fs.readdirSync(TEMPLATES_ROOT).join(', ');
-    return res.status(404).json({ error: `Template '${category}' with variant '${variant}' not found. Available: ${available}` });
+    return res.status(404).json({ error: `Template '${category}' not found. Available: ${available}` });
   }
 
   const workId  = uuidv4();
