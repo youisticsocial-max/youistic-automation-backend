@@ -141,7 +141,7 @@ async function deployToNetlify(zipPath, siteName, netlifyToken) {
   }
 }
 
-// ─── POST /build ──────────────────────────────────────────────────────────────
+// ─── POST /build (Core Endpoint Routing) ──────────────────────────────────────
 app.post('/build', async (req, res) => {
   const { category, clientName, variant, serverNumber, fields } = req.body || {};
   console.log('\n[BUILD] Request received:', { category, clientName, variant, serverNumber, fields });
